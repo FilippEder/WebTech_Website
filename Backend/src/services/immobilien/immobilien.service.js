@@ -14,8 +14,7 @@ class ImmobilienService {
    */
   async createImmobilie(data, user_id) {
     try {
-      const realEstate = await RealEstate.create(data, user_id);
-      return realEstate;
+      return await RealEstate.create(data, user_id);
     } catch (error) {
       throw error;
     }
@@ -106,8 +105,7 @@ class ImmobilienService {
    */
   async updateImmobilie( data) {
     try {
-      const updatedRealEstate = await RealEstate.update( data);
-      return updatedRealEstate;
+      return await RealEstate.update(data);
     } catch (error) {
       throw error;
     }
@@ -119,8 +117,7 @@ class ImmobilienService {
    */
   async getImmobilieByRealEstateId(id) {
     try {
-      const listing = await RealEstate.getImmobilieByRealEstateId(id);
-      return listing;
+      return await RealEstate.getImmobilieByRealEstateId(id);
     } catch (error) {
       throw error;
     }
@@ -135,8 +132,7 @@ class ImmobilienService {
    */
   async deleteImmobilie(id) {
     try {
-      const response = await RealEstate.delete(id);
-      return response;
+      return await RealEstate.delete(id);
     } catch (error) {
       throw error;
     }

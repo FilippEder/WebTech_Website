@@ -14,8 +14,7 @@ class ImmobilienController {
       // Falls Bilder hochgeladen wurden, füge deren Pfade (oder URLs) zum Objekt hinzu
       if (req.files && req.files.pictures) {
         // Beispiel: Speichere nur den Dateipfad; du kannst auch eine vollständige URL konstruieren
-        const picturePaths = req.files.pictures.map(file => file.path);
-        realEstateData.incoming_picture_urls = picturePaths;
+        realEstateData.incoming_picture_urls = req.files.pictures.map(file => file.path);
       } else {
         // Wenn keine Bilder hochgeladen wurden, setze einen leeren Array-Wert
         realEstateData.incoming_picture_urls = [];
@@ -77,8 +76,7 @@ class ImmobilienController {
       
       // Falls Bilder hochgeladen wurden, füge deren Pfade hinzu
       if (req.files && req.files.pictures) {
-        const picturePaths = req.files.pictures.map(file => file.path);
-        realEstateData.incoming_picture_urls = picturePaths;
+        realEstateData.incoming_picture_urls = req.files.pictures.map(file => file.path);
       }
       
       // An den Service übergeben – dieser ruft dann das Model mit den vorbereiteten Daten auf

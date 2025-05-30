@@ -13,8 +13,7 @@ class RequestService {
    */
   async createRequest(data, user_id) {
     try {
-      const request = await Request.create(data, user_id);
-      return request;
+      return await Request.create(data, user_id);
     } catch (error) {
       throw error;
     }
@@ -28,8 +27,7 @@ class RequestService {
    */
   async deleteRequest(id, requesterId) {
     try {
-      const response = await Request.delete(id, requesterId);
-      return response;
+      return await Request.delete(id, requesterId);
     } catch (error) {
       throw error;
     }
@@ -42,8 +40,7 @@ class RequestService {
    */
   async getAllRequestsByRequester(requesterId) {
     try {
-      const requests = await Request.getAllByRequester(requesterId);
-      return requests;
+      return Request.getAllByRequester(requesterId);
     } catch (error) {
       throw error;
     }
@@ -57,8 +54,7 @@ class RequestService {
    */
   async getAllRequestsForOwner(ownerId) {
     try {
-      const requests = await Request.getAllForOwner(ownerId);
-      return requests;
+      return Request.getAllForOwner(ownerId);
     } catch (error) {
       throw error;
     }

@@ -1,5 +1,5 @@
 // setup-close.js
-const pool = require('../../../../../../Backend/config/db'); // Pfad ggf. anpassen
+const pool = require('../../../src/config/database/db'); // Pfad ggf. anpassen
 
 // Diese "after"-Hook wird einmal nach allen Tests ausgeführt.
 after(function() {

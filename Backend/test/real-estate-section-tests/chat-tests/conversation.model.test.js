@@ -5,10 +5,9 @@
 // - findConversationByListiningId(conversationId) liefert die Conversation Information
 // - deleteConversation(listing) löscht den Datensatz, der zur gegebenen Listing-ID gehört
 
-const ConversationModel = require('../../../../../../Backend/chat/conversation.model');
-const ListingModel = require('../../../Models/Luca/chat-models/listining.model')
+const ConversationModel = require('../../../src/models/chat/conversation.model');
+const ListingModel = require('../../../src/models/realEstate/listing.model')
 const expect = require('chai').expect;
-const sinon = require('sinon');
 // Optional: Falls du einen Datenbank-Pool (z.B. "pool") verwendest, um die Query-Aufrufe zu überwachen:
 // const pool = require('../db');
 
@@ -52,7 +51,6 @@ const result = await ConversationModel.newConversation(listingId);
         // Falls ein Fehler geworfen wird, sollte dieser nicht darauf hinweisen, dass die SQL-Injection erfolgreich war.
       }
 
-      // TODO: Überprüfe, ob die DB-Abfrage als parameterisierte Query ausgeführt wurde.
       // Beispiel (sofern implementiert):
       // expect(spy.called).to.be.true;
       // expect(spy.getCall(0).args[0]).to.include('$1');
@@ -116,7 +114,6 @@ const result = await ConversationModel.newConversation(listingId);
 
        const createdListing = await ListingModel.createListing(listiningData);
        const listingId = createdListing.listing_id;  // Verwende den tatsächlichen Wert
-const result = await ConversationModel.newConversation(listingId);
 
       // Rufe findConversationByListiningId auf, um die conversation_id zu ermitteln.
       // Hier gehen wir davon aus, dass findConversationByListiningId die zugehörige Konversation findet.

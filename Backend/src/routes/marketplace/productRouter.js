@@ -45,20 +45,18 @@ router.get('/', async (req, res) => {
       whereClause.categoryId = req.query.category_id;
     }
 
-    const products = await Product.findAll({
+    // In-Memory-Attributfilter (unabhängig vom Where-Objekt)
+    let filteredProducts = await Product.findAll({
       where: whereClause,
       include: [
-        { model: ProductPicture, as: 'pictures' },
+        {model: ProductPicture, as: 'pictures'},
         {
           model: ProductAttribute,
           as: 'productAttributes',
-          include: [{ model: Attribute, as: 'attribute' }]
+          include: [{model: Attribute, as: 'attribute'}]
         }
       ]
     });
-
-    // In-Memory-Attributfilter (unabhängig vom Where-Objekt)
-    let filteredProducts = products;
     Object.keys(req.query).forEach(key => {
       if (key.startsWith('attribute_')) {
         const attributeId = key.replace('attribute_', '');
@@ -120,10 +118,6 @@ router.post('/', upload.array('pictures'), async (req, res) => {
     // Optional: Falls Bilder hochgeladen wurden, können diese verarbeitet und gespeichert werden
     if (req.files && req.files.length > 0) {
       // Beispiel: Für jedes hochgeladene Bild einen Eintrag in der Tabelle ProductPicture anlegen
-      const pictures = req.files.map(file => ({
-        productId: newProduct.productId,
-        pictureURL: file.path  // oder ein anderer Pfad, der später zur Anzeige genutzt wird
-      }));
       // Hier könntest du ProductPicture.bulkCreate(pictures, { transaction: t }) verwenden
     }
 

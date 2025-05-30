@@ -1,6 +1,5 @@
 const Picture = require('../models/vehicle/vehicle-picture')
-const {existsSync, readdirSync, unlinkSync} = require("node:fs");
-const {join} = require("node:path");
+const {existsSync, unlinkSync} = require("node:fs");
 
 
 
