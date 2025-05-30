@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const pool = require('../../../../../../Backend/config/db'); // Pfad ggf. anpassen
-const ListingModel = require('../../../Models/Luca/chat-models/listining.model'); // Pfad ggf. anpassen
+const pool = require('../../../src/config/database/db'); // Pfad ggf. anpassen
+const ListingModel = require('../../../src/models/realEstate/listing.model'); // Pfad ggf. anpassen
 
 describe('ListingModel', function () {
   // Vor jedem Test: Tabelle leeren, damit keine alten Daten stören.
@@ -117,16 +117,6 @@ describe('ListingModel', function () {
       // Arrange
       const userId = 1;
       // Zwei Listings für userId  und ein Listing für einen anderen Nutzer anlegen.
-      const listingUser_1 = await ListingModel.createListing({
-        user_id: userId,
-        title: 'User Listing 1',
-        description: 'Beschreibung 1'
-      });
-      const listingUser_2 = await ListingModel.createListing({
-        user_id: userId,
-        title: 'User Listing 2',
-        description: 'Beschreibung 2'
-      });
 
       // Act
       const userListings = await ListingModel.getListingsByUserId(userId);

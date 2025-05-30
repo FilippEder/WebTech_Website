@@ -6,7 +6,7 @@
 // - deleteConversation(listing) löscht den Datensatz, der zur gegebenen Listing-ID gehört
 
 const ConversationModel = require('../../../../../../Backend/chat/conversation.model');
-const ListiningModel = require('../../../Models/Luca/chat-models/listining.model')
+const ListingModel = require('../../../Models/Luca/chat-models/listining.model')
 const expect = require('chai').expect;
 const sinon = require('sinon');
 // Optional: Falls du einen Datenbank-Pool (z.B. "pool") verwendest, um die Query-Aufrufe zu überwachen:
@@ -27,7 +27,7 @@ describe('1. ConversationModel', function() {
 
 	 
 
-       const createdListing = await ListiningModel.createListing(listiningData);
+       const createdListing = await ListingModel.createListing(listiningData);
        const listingId = createdListing.listing_id;  // Verwende den tatsächlichen Wert
 const result = await ConversationModel.newConversation(listingId);
       // Überprüfe, ob das Ergebnis ein Boolean ist und true enthält.
@@ -79,7 +79,7 @@ const result = await ConversationModel.newConversation(listingId);
 
 	 
 
-       const createdListing = await ListiningModel.createListing(listiningData);
+       const createdListing = await ListingModel.createListing(listiningData);
        const listingId = createdListing.listing_id;  // Verwende den tatsächlichen Wert
 
        await ConversationModel.newConversation(listingId);
@@ -114,7 +114,7 @@ const result = await ConversationModel.newConversation(listingId);
 
 	 
 
-       const createdListing = await ListiningModel.createListing(listiningData);
+       const createdListing = await ListingModel.createListing(listiningData);
        const listingId = createdListing.listing_id;  // Verwende den tatsächlichen Wert
 const result = await ConversationModel.newConversation(listingId);
 

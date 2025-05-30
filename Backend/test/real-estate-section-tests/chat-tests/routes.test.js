@@ -8,11 +8,11 @@ const app = express();
 app.use(express.json());
 
 // Importiere die Routes
-const postMessagesRoutes = require('../../../../../../Backend/routes/chat/messages/post.messages.routes');
-const getMessagesRoutes  = require('../../../../../../Backend/routes/chat/messages/get.messages.routes');
-const postConversationsRoutes = require('../../../../../../Backend/routes/chat/conversations/post.conversations.routes');
-const getConversationsRoutes  = require('../../../../../../Backend/routes/chat/conversations/get.conversations.routes');
-const deleteConversationsRoutes = require('../../../../../../Backend/routes/chat/conversations/delete.conversations.routes');
+const postMessagesRoutes = require('../../../src/routes/chat/messages/post.messages.routes');
+const getMessagesRoutes  = require('../../../src/routes/chat/messages/get.messages.routes');
+const postConversationsRoutes = require('../../../src/routes/chat/conversations/post.conversations.routes');
+const getConversationsRoutes  = require('../../../src/routes/chat/conversations/post.conversations.routes');
+const deleteConversationsRoutes = require('../../../src/routes/chat/conversations/delete.conversations.routes');
 
 // Binde die Routes an (achte auf die Reihenfolge – die Endpunkte sollten sich nicht überschneiden)
 app.use('/messages', postMessagesRoutes);
@@ -22,8 +22,7 @@ app.use('/conversations', getConversationsRoutes);
 app.use('/conversations', deleteConversationsRoutes);
 
 // Modelle für Testvorbereitung (zum Anlegen/Löschen von Daten)
-const ListingModel = require('../../../Models/Luca/chat-models/listining.model');
-const ConversationModel = require('../../../../../../Backend/chat/conversation.model');
+const ListingModel = require('../../../src/models/realEstate/listing.model');
 
 describe('Chat Routes', function() {
   let listingId;
@@ -77,7 +76,7 @@ describe('Chat Routes', function() {
     describe('GET /messages', function() {
       beforeEach(async function() {
         // Säubere vorher alle Nachrichten in dieser Konversation
-        const pool = require('../../../../../../Backend/config/db');
+        const pool = require('../../../src/config/database/db');
         await pool.query('DELETE FROM chat_messages WHERE conversation_id = $1', [conversationId]);
 
         // Füge zwei Testnachrichten über den POST /messages-Endpunkt ein

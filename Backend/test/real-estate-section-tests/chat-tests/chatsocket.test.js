@@ -1,10 +1,10 @@
 
 const { expect } = require('chai');
 const sinon = require('sinon');
-const ChatSocket = require('../../../../../../Backend/chat/chatsocket/chatsocket.js'); // Passe den Pfad ggf. an
+const ChatSocket = require('../../../src/chat/chatsocket/chatsocket'); // Passe den Pfad ggf. an
 
 // Für Testfall 2: Annahme, dass ConversationModel existiert
-const ConversationModel = require('../../../../../../Backend/chat/conversation.model.js');
+const ConversationModel = require('../../../src/models/chat/conversation.model');
 
 describe('ChatSocket', function() {
   let chatSocket;

@@ -1,6 +1,6 @@
 // real-estate-section-models/listing.model.js
 
-const db = require('../config/db'); // Datenbankverbindung
+const db = require('../../config/database/db'); // Datenbankverbindung
 
 class Listing {
   constructor(data) {

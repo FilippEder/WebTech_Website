@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const pool = require('../../../../../../Backend/config/db'); // Pfad ggf. anpassen
-const MessageModel = require('../../../../../../Backend/chat/message.model');
+const pool = require('../../../src/config/database/db'); // Pfad ggf. anpassen
+const MessageModel = require('../../../src/models/chat/message.model');
 
 describe('MessageModel', function() {
   // Wir benötigen eine existierende Konversation (und damit indirekt einen gültigen Listing-Datensatz).

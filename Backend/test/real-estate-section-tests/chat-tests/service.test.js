@@ -1,16 +1,15 @@
 // real-estate-section-tests/chat-services.test.js
 const { expect } = require('chai');
-const pool = require('../../../../../../Backend/config/db');
-const ListingModel = require('../../../Models/Luca/chat-models/listining.model');
-const ConversationModel = require('../../../../../../Backend/chat/conversation.model');
-const MessageModel = require('../../../../../../Backend/chat/message.model');
+const pool = require('../../../src/config/database/db');
+const ListingModel = require('../../../src/models/realEstate/listing.model');
+const ConversationModel = require('../../../src/models/chat/conversation.model');
 
 // Service-Module (wir nehmen an, dass diese Funktionen exportiert werden)
-const { postMessage } = require('../../../../../../Backend/chat/services/messages/post.messages.service');
-const { getMessages } = require('../../../../../../Backend/chat/services/messages/get.messages.service');
-const { createConversation } = require('../../../../../../Backend/chat/services/conversations/post.conversations.service');
-const { getConversation } = require('../../../../../../Backend/chat/services/conversations/get.conversations.service');
-const { deleteConversation } = require('../../../../../../Backend/chat/services/conversations/delete.conversations.service');
+const { postMessage } = require('../../../src/services/chat/messages/post.messages.service');
+const { getMessages } = require('../../../src/services/chat/messages/get.messages.service');
+const { createConversation } = require('../../../src/services/conversations/post.conversations.service');
+const { getConversation } = require('../../../src/services/conversations/get.conversations.service');
+const { deleteConversation } = require('../../../src/services/conversations/delete.conversations.service');
 
 describe('Conversation Services', function() {
   let listingId;

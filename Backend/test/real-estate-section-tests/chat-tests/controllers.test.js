@@ -7,11 +7,11 @@ const app = express();
 app.use(express.json());
 
 // Importiere die Controller
-const postMessagesController = require('../../../../../../Backend/chat/chat-controllers/messages/post.messages.controller');
-const getMessagesController  = require('../../../../../../Backend/chat/chat-controllers/messages/get.messages.controller');
-const postConversationsController = require('../../../../../../Backend/chat/chat-controllers/conversations/post.conversations.controller');
-const getConversationsController  = require('../../../../../../Backend/chat/chat-controllers/conversations/get.conversations.controller');
-const deleteConversationsController = require('../../../../../../Backend/chat/chat-controllers/conversations/delete.conversations.controller');
+const postMessagesController = require('../../../src/controllers/chat-controllers/messages/post.messages.controller');
+const getMessagesController  = require('../../../src/controllers/chat-controllers/messages/get.messages.controller');
+const postConversationsController = require('../../../src/controllers/chat-controllers/conversations/post.conversations.controller');
+const getConversationsController  = require('../../../src/controllers/chat-controllers/conversations/get.conversations.controller');
+const deleteConversationsController = require('../../../src/controllers/chat-controllers/conversations/delete.conversations.controller');
 
 // Binde die Controller als Routen ein
 app.post('/messages', postMessagesController);
@@ -21,8 +21,7 @@ app.get('/conversations', getConversationsController);
 app.delete('/conversations', deleteConversationsController);
 
 // Modelle für Testvorbereitung (Daten anlegen/löschen)
-const ListingModel = require('../../../Models/Luca/chat-models/listining.model');
-const ConversationModel = require('../../../../../../Backend/chat/conversation.model');
+const ListingModel = require('../../../src/models/realEstate/listing.model');
 
 describe('Chat Controllers', function () {
   // Gemeinsame Testdaten
@@ -85,7 +84,7 @@ describe('Chat Controllers', function () {
     describe('GET /messages', function () {
       // Vor jedem GET-Test: Säubere (lösche) Nachrichten dieser Konversation und füge Testnachrichten ein.
       beforeEach(async function () {
-        const pool = require('../../../../../../Backend/config/db');
+        const pool = require('../../../src/config/database/db');
         await pool.query('DELETE FROM chat_messages WHERE conversation_id = $1', [conversationId]);
 
         // Füge einige Nachrichten ein (über den POST-Controller)
