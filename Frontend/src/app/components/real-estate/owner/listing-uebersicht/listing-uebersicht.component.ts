@@ -95,7 +95,7 @@ export class ListingOverviewComponent implements OnInit {
 
     // updateListing mit nur einem Argument (FormData) aufrufen – analog zur Edit-Methode
     this.realEstateService.updateListing(formData).subscribe({
-      next: (response) => console.log('Status successfully updated for listing:', listing.real_estate_id),
+      next: () => console.log('Status successfully updated for listing:', listing.real_estate_id),
       error: (error) => console.error('Error updating status:', error)
     });
   }

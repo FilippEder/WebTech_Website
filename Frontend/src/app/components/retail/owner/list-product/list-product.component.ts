@@ -63,7 +63,7 @@ export class ListProductComponent implements OnInit {
     const fileList: FileList = event.target.files;
     if (fileList && fileList.length > 0) {
       (this.newProduct as any).pictureFiles = Array.from(fileList);
-      this.newProduct.pictures = Array.from(fileList).map((file: File, index: number) => ({
+      this.newProduct.pictures = Array.from(fileList).map((file: File) => ({
         pictureID: 0,
         productId: 0,
         pictureURL: URL.createObjectURL(file)

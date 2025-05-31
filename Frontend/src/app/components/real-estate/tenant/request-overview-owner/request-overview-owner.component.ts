@@ -63,9 +63,6 @@ export class RequestOverviewComponentOwner implements OnInit {
     console.log("Die Id ist:" + requestId);
     this.router.navigate(['/chat', requestId]);
     this.chatService.createConversation(requestId).subscribe(
-      (createdConversation) => {
-        // Erfolgreich: Jetzt kannst du z.B. zur Chat-Seite navigieren
-      },
       (error) => {
         console.error('Fehler beim Erstellen der Conversation:', error);
       }

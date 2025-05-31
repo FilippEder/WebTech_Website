@@ -12,8 +12,6 @@ export function passwordValidator():AsyncValidatorFn {
     const hasSpecialChar = /[!@#$%^&*]/.test(value);
     const hasMinLength = value.length >= 8;
 
-    const errors: ValidationErrors = {}
-
 
     if (!hasUpperCase) {
       return of({invalidPassword: true})

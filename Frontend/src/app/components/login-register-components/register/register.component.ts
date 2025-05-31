@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgClass, NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {User} from '../../../models/login-models/User';
 import {UserService} from '../../../services/login/user.service';
 import {Router, RouterLink} from '@angular/router';
