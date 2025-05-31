@@ -1,0 +1,60 @@
+<!-- Fixed Filter-Menü -->
+<div class="fixed-filter-menu">
+  <form (ngSubmit)="applyFilter()">
+    <!--<div class="filter-group">
+      <label for="searchText">Name / Beschreibung:</label>
+      <input
+        type="text"
+        id="searchText"
+        name="searchText"
+        [(ngModel)]="filter.searchText"
+        placeholder="Suchbegriff..."
+    </div>/>-->
+
+    <!-- Dynamische Kategorieauswahl -->
+    <div class="filter-group">
+      <label>Kategorie auswählen:</label>
+      <app-dynamic-category-selector (finalCategorySelected)="onFinalCategorySelected($event)"></app-dynamic-category-selector>
+    </div>
+
+    <!-- Dynamische Attributsauswahl: Nur wenn Attribute vorhanden sind -->
+    <div class="filter-group" *ngIf="availableAttributes && availableAttributes.length">
+      <label>Attribute:</label>
+      <div *ngFor="let attr of availableAttributes">
+        <label for="attr-{{attr.attribute_id}}">
+          {{ attr.attributeName }} ({{ attr.attributeUnit }})
+        </label>
+        <input
+          type="number"
+          id="attr-{{attr.attributeId}}"
+          name="attr-{{attr.attributeId}}"
+          [(ngModel)]="filter.attributeFilters[attr.attributeId]"
+          placeholder="Wert"
+        />
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label>Preis:</label>
+      <input type="number" name="price_min" [(ngModel)]="filter.price_min" placeholder="Min Preis" />
+      <input type="number" name="price_max" [(ngModel)]="filter.price_max" placeholder="Max Preis" />
+    </div>
+
+    <button type="submit">Filter anwenden</button>
+  </form>
+</div>
+
+<!-- Produktliste -->
+<div class="listings-container">
+  <div *ngFor="let product of filteredProducts" class="product-card">
+    <h3>{{ product.name }}</h3>
+    <img [src]="getPictureUrl(product)" alt="Produktbild" />
+    <p>{{ product.description }}</p>
+    <p>Preis: {{ product.price | currency }}</p>
+    <p>Kategorie: {{ product.categoryId }}</p>
+    <div class="button-group">
+      <button (click)="viewDetails(product.productId)">Details</button>
+      <button (click)="sendRequest(product.productId)">Anfrage senden</button>
+    </div>
+  </div>
+</div>

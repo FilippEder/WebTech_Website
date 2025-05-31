@@ -1,0 +1,14 @@
+<div class="request-overview">
+  <h2>OWNER REQUEST OVERVIEW </h2>
+
+  <!-- Wenn Anfragen vorhanden sind -->
+  <div *ngFor="let request of requests">
+    <div class="request-card">
+      <p><strong>Anfrage ID:</strong> {{ request.request_id }}</p>
+      <p><strong>Requester ID:</strong> {{ request.requester_id }}</p>
+      <p><strong>Listing Typ:</strong> {{ request.listing_type }}</p>
+      <p><strong>Listing ID:</strong> {{ request.listing_id }}</p>
+      <button (click)="viewChatConversation(request)">Chat öffnen</button>
+    </div>
+  </div>
+</div>

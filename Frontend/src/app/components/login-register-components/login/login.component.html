@@ -1,0 +1,24 @@
+<title>Register</title>
+<main>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Login</h1>
+
+    <input formControlName="email" id="email" placeholder="email">
+    <div *ngIf="formControl.email.invalid && formControl.email.touched">
+      <div *ngIf="formControl.email.errors?.required">Email is required</div>
+      <div *ngIf="formControl.email.errors?.email">Email is invalid</div>
+    </div>
+
+    <input type="password" formControlName="password" id="password" placeholder="password">
+    <div *ngIf="formControl.password.invalid && formControl.password.touched">
+      Password is required
+    </div>
+
+    <div *ngIf="unauthorized">Invalid email or password</div>
+    <div *ngIf="tooMuchRequests">Too Many Requests. Timeout 15 minutes</div>
+
+    <button type="submit">Login</button>
+  </form>
+  <button  [routerLink]="['/register']">Need to Register?</button>
+</main>
+

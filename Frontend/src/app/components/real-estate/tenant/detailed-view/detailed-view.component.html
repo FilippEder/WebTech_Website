@@ -1,0 +1,27 @@
+<div class="detailed-view" *ngIf="listing; else loading">
+  <h2>{{ listing.property_name }}</h2>
+  <p><strong>Kategorie:</strong> {{ listing.category_name }}</p>
+  <p><strong>Typ:</strong> {{ listing.type_name }}</p>
+  <p><strong>Beschreibung:</strong> {{ listing.description }}</p>
+  <p><strong>Adresse:</strong> {{ listing.property_address }}</p>
+  <p><strong>Stadt:</strong> {{ listing.city_name }}</p>
+  <p><strong>Provinz:</strong> {{ listing.province_name }}</p>
+  <p><strong>Mietpreis:</strong> {{ listing.rental_price | currency }}</p>
+  <p><strong>Mietdauer:</strong> {{ listing.rental_period }} Monate</p>
+  <p><strong>Vorauszahlung:</strong> {{ listing.advance_payment | currency }}</p>
+  <p><strong>Sofort verfügbar:</strong> {{ listing.immediate_availability ? 'Ja' : 'Nein' }}</p>
+  <p><strong>Status:</strong> {{ listing.status }}</p>
+  <p><strong>Typenspezifische Attribute:</strong> {{ listing.type_attributes | json }}</p>
+
+  <!-- Bilder anzeigen, sofern vorhanden -->
+  <div class="images" *ngIf="listing.incoming_picture_urls && listing.incoming_picture_urls.length > 0">
+    <h3>Bilder</h3>
+    <div *ngFor="let img of listing.incoming_picture_urls">
+      <img src="http://localhost:3000/{{img}}" alt="Immobilienbild" />
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Lade Immobilieninformationen...</p>
+</ng-template>

@@ -1,0 +1,12 @@
+<div [formGroup]="form">
+  <div formArrayName="categorySelections">
+    <div *ngFor="let control of categorySelections.controls; let i = index">
+      <select [formControlName]="i" (change)="onCategoryChange(i)">
+        <option [ngValue]="null" disabled selected>Bitte auswählen</option>
+        <option *ngFor="let cat of categoryOptions[i]" [ngValue]="cat">
+          {{ cat.categoryName }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

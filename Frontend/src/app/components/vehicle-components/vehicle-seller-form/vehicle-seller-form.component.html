@@ -1,0 +1,110 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <label for="category">Vehicle category  </label>
+  <select formControlName='category' id="category" (change)="onCategoryChange($event)">
+    <option value="" disabled>Select a Category</option>
+    <option value="1">Car</option>
+    <option value="2">Motorbike</option>
+  </select>
+  <div *ngIf="form.get('category')?.invalid && (form.get('category')?.dirty || form.get('category')?.touched)">
+    Vehicle Category is required
+  </div>
+
+
+  <label for="mark">Vehicle mark</label>
+  <select formControlName="mark" id="mark" (change)="onMarkChange($event)">
+    <option value="" disabled>Select a Mark</option>
+    <option *ngFor="let mark of marks" [value]="mark.mark_id">
+      {{mark.name}}
+    </option>
+  </select>
+  <div *ngIf="form.get('mark')?.invalid && (form.get('mark')?.dirty || form.get('mark')?.touched)">
+    Vehicle Mark is required
+  </div>
+
+
+  <label for="model">Vehicle model</label>
+  <select formControlName="model" id="model">
+    <option value="" disabled>Select a Model</option>
+    <option *ngFor="let model of models" [value]="model.model_id">
+      {{model.name}}
+    </option>
+  </select>
+  <div *ngIf="form.get('model')?.invalid && (form.get('model')?.dirty || form.get('model')?.touched)">
+    Vehicle Model is required
+  </div>
+
+
+  <label for="type">Vehicle type</label>
+  <select formControlName="type" id="type">
+    <option value="" disabled>Select a Type</option>
+    <option *ngFor="let type of types" [value]="type.type_id">
+      {{type.name}}
+    </option>
+  </select>
+  <div *ngIf="form.get('type')?.invalid && (form.get('type')?.dirty || form.get('type')?.touched)">
+    Vehicle Type is required
+  </div>
+
+
+  <label for="name">Name</label>
+  <input formControlName="name" id="name" type="text" placeholder="Name">
+  <div *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)">
+    Name is required
+  </div>
+
+  <label for="description">Description</label>
+  <input formControlName='description' id="description" type="text"  placeholder="Description">
+
+  <label for="price">Price</label>
+  <input formControlName="price" id='price' min="0" (keydown)="preventSigns($event)" type="number" placeholder="Price">
+  <div *ngIf="form.get('price')?.invalid && (form.get('price')?.dirty || form.get('price')?.touched)">
+    Price is required
+  </div>
+
+  <label for="first_registration">First registration</label>
+    <input formControlName="first_registration" id="first_registration" type="date" placeholder="registration">
+  <div *ngIf="form.get('first_registration')?.invalid && (form.get('first_registration')?.dirty || form.get('first_registration')?.touched)">
+    Vehicle registration is required
+  </div>
+  <div *ngIf="form.get('first_registration')?.errors?.['invalidDate']">
+    This Date is invalid or is older then 1900
+  </div>
+
+  <label for="mileage">Mileage</label>
+  <input formControlName="mileage" id="mileage" min="0" (keydown)="preventSigns($event)" type="number" placeholder="Mileage">
+
+  <label for="fuel">Fuel Type</label>
+  <input formControlName="fuel_type" id="fuel" type="text" placeholder="Fuel Type">
+
+  <label for="Color">Color</label>
+  <input formControlName="color" id="Color" type="text" placeholder="Color">
+
+  <label for="condition">Condition</label>
+    <select formControlName="condition" id="condition">
+      <option value="New">New</option>
+      <option value="Used">Used</option>
+      <option value="Broken">Broken</option>
+    </select>
+
+  <div *ngIf="this.selectedFiles.length != 0 || this.updatingImages">
+    <label>Current Images:
+      <div *ngFor="let image of this.updatingImages; let i = index">
+        <img src="http://localhost:3000/{{image.picture_url}}" alt="car.png" width="200">
+        <button type="button" (click)="deleteImageFromBackend(i,image.picture_id)">Remove</button>
+      </div>
+      <div *ngFor="let image of this.previews; let i = index">
+        <img [src]="image" alt="car.png" width="200">
+        <button type="button" (click)="this.removeLocalImage(i,images)">Remove</button>
+      </div>
+    </label>
+  </div>
+
+  <label for="images">Vehicle images (Max up to {{this.maxFiles}} images)</label>
+  <input #images formControlName="images" id="images" type="file" accept="image/*" multiple (change)="onFilesSelected($event)"/>
+
+  <button type="submit">{{ submitButtonText }}</button>
+  <div *ngIf="!isValid">
+    This form is invalid!
+  </div>
+</form>

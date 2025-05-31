@@ -1,0 +1,129 @@
+<!-- Fixiertes Filter-Menü nur in dieser Komponente -->
+<div class="fixed-filter-menu">
+  <form (ngSubmit)="applyFilter()">
+    <div class="filter-group">
+      <label for="searchText">Name / Beschreibung:</label>
+      <input
+        type="text"
+        id="searchText"
+        name="searchText"
+        [(ngModel)]="filter.searchText"
+        placeholder="Suchbegriff..."
+      />
+    </div>
+
+    <div class="filter-group">
+      <label for="category">Kategorie:</label>
+      <select id="category" name="category" [(ngModel)]="filter.category">
+        <option value="">Alle</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="type">Typ:</label>
+      <select id="type" name="type" [(ngModel)]="filter.type">
+        <option value="">Alle</option>
+        <option *ngFor="let t of types" [value]="t">{{ t }}</option>
+      </select>
+    </div>
+
+    <!-- Dynamisch angezeigte typenspezifische Filterfelder -->
+    <div class="filter-group" *ngIf="filter.type === 'Detached House'">
+      <label for="totalFloorArea">Gesamtfläche (m²) ≥</label>
+      <input
+        type="number"
+        id="totalFloorArea"
+        name="totalFloorArea"
+        [(ngModel)]="filter.type_attributes.total_floor_area"
+        placeholder="Gesamtfläche"
+      />
+      <label for="garden">Garten:</label>
+      <select id="garden" name="garden" [(ngModel)]="filter.type_attributes.garden">
+        <option value="">Alle</option>
+        <option value="true">Ja</option>
+        <option value="false">Nein</option>
+      </select>
+    </div>
+
+    <div class="filter-group" *ngIf="filter.type === 'Apartment'">
+      <label for="floorLevel">Stockwerk:</label>
+      <input
+        type="number"
+        id="floorLevel"
+        name="floorLevel"
+        [(ngModel)]="filter.type_attributes.floor_level"
+        placeholder="Stockwerk"
+      />
+      <label for="balcony">Balkon:</label>
+      <select id="balcony" name="balcony" [(ngModel)]="filter.type_attributes.balcony">
+        <option value="">Alle</option>
+        <option value="true">Ja</option>
+        <option value="false">Nein</option>
+      </select>
+    </div>
+
+    <div class="filter-group" *ngIf="filter.type === 'Penthouse'">
+      <label for="roofTerrace">Dachterrasse:</label>
+      <select id="roofTerrace" name="roofTerrace" [(ngModel)]="filter.type_attributes.roof_terrace">
+        <option value="">Alle</option>
+        <option value="true">Ja</option>
+        <option value="false">Nein</option>
+      </select>
+      <label for="luxury">Luxus:</label>
+      <select id="luxury" name="luxury" [(ngModel)]="filter.type_attributes.luxury">
+        <option value="">Alle</option>
+        <option value="true">Ja</option>
+        <option value="false">Nein</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Preis:</label>
+      <input type="number" name="priceMin" [(ngModel)]="filter.priceMin" placeholder="Min Preis" />
+      <input type="number" name="priceMax" [(ngModel)]="filter.priceMax" placeholder="Max Preis" />
+    </div>
+
+    <div class="filter-group">
+      <label for="rentalPeriod">Mietdauer (Monate):</label>
+      <input type="number" id="rentalPeriod" name="rentalPeriod" [(ngModel)]="filter.rentalPeriod" placeholder="Mietdauer" />
+    </div>
+
+    <div class="filter-group">
+      <label for="province">Provinz:</label>
+      <select id="province" name="province" [(ngModel)]="filter.province">
+        <option value="">Alle</option>
+        <option *ngFor="let prov of provinces" [value]="prov">{{ prov }}</option>
+      </select>
+      <label for="city">Stadt:</label>
+      <select id="city" name="city" [(ngModel)]="filter.city">
+        <option value="">Alle</option>
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="immediateAvailability">Sofort verfügbar:</label>
+      <select id="immediateAvailability" name="immediateAvailability" [(ngModel)]="filter.immediateAvailability">
+        <option value="">Alle</option>
+        <option value="true">Ja</option>
+        <option value="false">Nein</option>
+      </select>
+    </div>
+
+    <button type="submit">Filter anwenden</button>
+  </form>
+</div>
+
+<!-- Container für die Listings (Ausreichend Abstand, damit das Menü nicht verdeckt) -->
+<div class="listings-container">
+  <div *ngFor="let listing of filteredListings" class="listing-card">
+    <h3>{{ listing.property_name }}</h3>
+    <img src="http://localhost:3000/{{getPictureUrl(listing)}}" alt="Bild der Immobilie" />
+
+    <div class="button-group">
+      <button (click)="sendRequest(listing.real_estate_id)">Request</button>
+      <button (click)="viewDetails(listing.real_estate_id)">Detailed View</button>
+    </div>
+  </div>
+</div>

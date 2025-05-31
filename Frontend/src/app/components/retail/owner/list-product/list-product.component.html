@@ -1,0 +1,129 @@
+<div class="add-product-container">
+  <div class="card">
+    <h2>Neues Produkt hinzufügen</h2>
+    <form>
+      <!-- Produktname -->
+      <div class="form-group">
+        <label for="productName">Produktname</label>
+        <input
+          type="text"
+          id="productName"
+          name="name"
+          [(ngModel)]="newProduct.name"
+          placeholder="Produktname"
+          required
+        />
+      </div>
+
+      <!-- Preis -->
+      <div class="form-group">
+        <label for="price">Preis</label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          [(ngModel)]="newProduct.price"
+          step="0.01"
+          min="0"
+          placeholder="Preis"
+          required
+        />
+      </div>
+
+      <!-- Beschreibung -->
+      <div class="form-group">
+        <label for="description">Beschreibung</label>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="newProduct.description"
+          placeholder="Beschreibung des Produkts"
+        ></textarea>
+      </div>
+
+      <!-- Liefermethode -->
+      <div class="form-group">
+        <label for="deliveryMethod">Liefermethode</label>
+        <select
+          id="deliveryMethod"
+          name="delivery_method"
+          [(ngModel)]="newProduct.delivery_method"
+          required
+        >
+          <option [ngValue]="null" disabled selected>Bitte auswählen</option>
+          <option value="Self-Pickup">Self-Pickup</option>
+          <option value="Postal Delivery">Postal Delivery</option>
+          <option value="Both">Both</option>
+        </select>
+      </div>
+
+      <!-- Zustand -->
+      <div class="form-group">
+        <label for="condition">Zustand</label>
+        <select
+          id="condition"
+          name="condition"
+          [(ngModel)]="newProduct.condition"
+          required
+        >
+          <option [ngValue]="null" disabled selected>Bitte auswählen</option>
+          <option value="New">New</option>
+          <option value="Used">Used</option>
+          <option value="Broken">Broken</option>
+        </select>
+      </div>
+
+      <!-- Dynamische Kategorieauswahl -->
+      <div class="category-selection">
+        <h3>Kategorie auswählen:</h3>
+        <app-dynamic-category-selector #catSelector
+          (finalCategorySelected)="onFinalCategorySelected($event)">
+        </app-dynamic-category-selector>
+      </div>
+
+      <!-- Dynamische Attributsauswahl (nur wenn Attribute verfügbar sind) -->
+      <div class="form-group" *ngIf="availableAttributes && availableAttributes.length">
+        <label>Attribute</label>
+        <div *ngFor="let attr of availableAttributes">
+          <label for="attr-{{attr.attributeId}}">
+            {{ attr.attributeName }} ({{ attr.attributeUnit }})
+          </label>
+          <input
+            type="number"
+            id="attr-{{attr.attributeId}}"
+            name="attr-{{attr.attributeId}}"
+            [(ngModel)]="productAttributes[attr.attributeId]"
+            placeholder="Wert eingeben"
+          />
+        </div>
+      </div>
+
+      <!-- Bilder Upload -->
+      <div class="form-group">
+        <label for="images">Bilder</label>
+        <input
+          type="file"
+          id="images"
+          (change)="createPictureArray($event)"
+          accept="image/*"
+          multiple
+        />
+      </div>
+
+      <!-- Bildvorschau -->
+      <div class="image-preview" *ngIf="newProduct.pictures && newProduct.pictures.length">
+        <h3>Bildvorschau</h3>
+        <div class="preview-list">
+          <div class="preview-item" *ngFor="let pic of newProduct.pictures; let i = index">
+            <img [src]="getPictureUrl(pic)" alt="Bild {{i + 1}}" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Absenden -->
+      <div class="form-group submit-group">
+        <button type="button" (click)="addProduct()">Hinzufügen</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="product-detail-container" *ngIf="product">
+    <h2>{{ product.name }}</h2>
+    <div class="images">
+      <img *ngFor="let pic of product.pictures" [src]="getPictureUrl(pic)" alt="Produktbild" />
+    </div>
+    <p><strong>Beschreibung:</strong> {{ product.description }}</p>
+    <p><strong>Preis:</strong> {{ product.price | currency }}</p>
+    <p><strong>Kategorie:</strong> {{ product.categoryId }}</p>
+    <div *ngIf="product.productAttributes && product.productAttributes.length">
+      <h3>Attribute:</h3>
+      <ul>
+        <li *ngFor="let pa of product.productAttributes">
+          {{ pa.attribute.attributeName }}: {{ pa.attributeValue }} {{ pa.attribute.attributeUnit }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  

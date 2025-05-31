@@ -1,0 +1,26 @@
+<div *ngIf="vehicle; else loading">
+  <h2>{{ vehicle.name }}</h2>
+  <p><strong>Seller:</strong> {{user?.email}}</p>
+  <p><strong>Address:</strong> {{user?.address}}</p>
+  <p><strong>Price:</strong> €{{ vehicle.price }}</p>
+  <p><strong>Mark:</strong> {{mark.name}}</p>
+  <p><strong>Model:</strong> {{model.name}}</p>
+  <p><strong>Type:</strong> {{type.name}}</p>
+  <p><strong>Description:</strong> {{ vehicle.description }}</p>
+  <p><strong>First registration:</strong> {{ vehicle.first_registration }}</p>
+  <p><strong>Mileage:</strong> {{ vehicle.mileage}}km</p>
+  <p><strong>Fuel type:</strong> {{ vehicle.fuel_type}}</p>
+  <p><strong>Color:</strong> {{ vehicle.color }}</p>
+  <p><strong>Condition:</strong> {{ vehicle.condition}}</p>
+  <p><strong>Pictures:</strong></p>
+  <div *ngFor="let picture of pictures">
+    <img src="http://localhost:3000/{{picture?.picture_url}}" width="400" alt="Car">
+  </div>
+
+  <button (click)="this.sendRequest(vehicle.vehicle_id)">Send request</button>
+  <div *ngIf="requestSent">Request Sent!</div>
+</div>
+
+<ng-template #loading>
+  <div>Loading item data...</div>
+</ng-template>

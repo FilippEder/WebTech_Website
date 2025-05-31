@@ -1,0 +1,39 @@
+<header><h1>Manage Vehicle Listings</h1></header>
+<main>
+  <app-vehicle-seller-form
+  [form]="form"
+  submitButtonText="Add Listing"
+  (formSubmit)="createVehicle()">
+  </app-vehicle-seller-form>
+
+
+  <div class="list">
+    <div>
+      <button (click)="vehicleListVisible=true">Vehicle Listings</button>
+      <button (click)="vehicleListVisible=false">Listing Requests</button>
+    </div>
+    <br>
+    <div *ngIf="!vehicleListVisible">
+
+    </div>
+    <div *ngIf="vehicleListVisible">
+    <h3>Your Vehicles (Max Limit of 10 Listings)</h3>
+    <ul id="vehicleList">
+      <li *ngFor="let vehicle of vehicles">
+        <app-vehicle-list-element
+        [vehicle]="vehicle"
+        [image]="vehicle.vehicle_pictures[0]">
+        </app-vehicle-list-element>
+        <p>Status:{{vehicle.status}}</p>
+        <button (click)="deleteVehicle(vehicle.vehicle_id)">Delete</button>
+        <button [routerLink]="['/update-vehicle',vehicle.vehicle_id]">Update</button>
+        <button [innerText]="vehicle.status === 'Sold' ? 'Mark as Open' : 'Mark as Sold'"
+          (click)="vehicle.status === 'Sold' ? markAsOpen(vehicle) : markAsSold(vehicle)">
+        </button>
+      </li>
+    </ul>
+    </div>
+  </div>
+</main>
+
+

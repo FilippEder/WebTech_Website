@@ -1,0 +1,48 @@
+<title>Register</title>
+<main>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h1>Register</h1>
+
+  <input formControlName="email" id="email" placeholder="email">
+  <div *ngIf="formControl.email.invalid && formControl.email.touched">
+    <div *ngIf="formControl.email.errors?.required">Email is required</div>
+    <div *ngIf="formControl.email.errors?.email">Email is invalid</div>
+  </div>
+  <div *ngIf="usedEmail">This Email is already in use</div>
+
+  <input type="password" formControlName="password" id="password" placeholder="password">
+  <div class="text-red-400 text-sm" *ngIf="passwordField?.dirty">
+    <div *ngIf="formControl.password.invalid && formControl.password.touched">
+      Password is required
+    </div>
+    <div *ngIf="!passwordField?.value?.match('^(?=.*[A-Z])')">Password needs at least one uppercase letter.</div>
+    <div *ngIf="!passwordField?.value?.match('(?=.*[a-z])')">Password needs at least one lowercase letter.</div>
+    <div *ngIf="!passwordField?.value?.match('(.*[0-9].*)')">Password needs at least one digit.</div>
+    <div *ngIf="!passwordField?.value?.match('(?=.*[!@#$%^&*])')">Password needs at least one special character.</div>
+    <div *ngIf="!passwordField?.value?.match('.{8,}')">Password needs to be at least 8 characters long.</div>
+  </div>
+
+  <input formControlName="region" id="region" placeholder="region">
+  <div *ngIf="formControl.region.invalid && formControl.region.touched">
+    Please, specify your region
+  </div>
+
+  <input formControlName="city" id="city" placeholder="city">
+  <div *ngIf="formControl.city.invalid && formControl.city.touched">
+    Please, specify your city
+  </div>
+
+  <input formControlName="street" id="street" placeholder="street">
+  <div *ngIf="formControl.street.invalid && formControl.street.touched">
+    Please, specify your street
+  </div>
+
+  <input formControlName="postcode" id="postcode" placeholder="postcode">
+  <div *ngIf="formControl.postcode.invalid && formControl.postcode.touched">
+    Please, specify your postcode
+  </div>
+
+  <button type="submit">Register</button>
+</form>
+  <button [routerLink]="['/login']">Need to Login?</button>
+</main>

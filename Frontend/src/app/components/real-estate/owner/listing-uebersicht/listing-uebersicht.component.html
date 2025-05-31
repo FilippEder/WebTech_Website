@@ -1,0 +1,30 @@
+<div class="listing-overview">
+  <h2>Meine Immobilien</h2>
+  <div *ngFor="let listing of listings" class="listing-card">
+    <!-- Anzeige des Namens und eines Bildes (hier wird das erste Bild aus incoming_picture_urls verwendet) -->
+    <h3>{{ listing.property_name }}</h3>
+    <img src="http://localhost:3000/{{getPictureUrl(listing)}}" alt="Bild der Immobilie" />
+
+    <!-- Buttons und Checkbox -->
+    <div class="button-group">
+      <!-- Löschen-Button: ruft deleteListing auf und lädt anschließend die Liste neu -->
+      <button (click)="deleteListing(listing.real_estate_id)">Löschen</button>
+
+      <!-- Chat-Button: Platzhalter für Chat-Funktionalität -->
+      <button (click)="goToChat(listing.real_estate_id)">Chat</button>
+
+      <!-- Edit-Button: Navigiert zur Edit-Komponente, wo die Daten geladen werden -->
+      <button (click)="editListing(listing.real_estate_id)">Edit</button>
+
+      <!-- Checkbox: Wechselt zwischen 'Open' und 'Rented' und sendet die Änderung -->
+      <label>
+        <input
+          type="checkbox"
+          [checked]="listing.status === 'Rented'"
+          (change)="toggleStatus(listing)"
+        />
+        {{ listing.status === 'Open' ? 'Offen' : 'Vermietet' }}
+      </label>
+    </div>
+  </div>
+</div>

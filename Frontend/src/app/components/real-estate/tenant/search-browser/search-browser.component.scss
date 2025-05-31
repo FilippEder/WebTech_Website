@@ -1,0 +1,101 @@
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+/* Fixiertes Filter-Menü */
+.fixed-filter-menu {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
+  z-index: 1000;
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-size: 0.9em;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+
+  button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+/* Container für Listings – Abstand nach oben, um das feste Menü zu berücksichtigen */
+.listings-container {
+  margin-top: 140px; /* Je nach Höhe des Filter-Menüs anpassen */
+  padding: 20px;
+}
+
+/* Einzelnes Listing-Card */
+.listing-card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fafafa;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+
+  h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      background-color: #28a745;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #218838;
+      }
+    }
+  }
+}

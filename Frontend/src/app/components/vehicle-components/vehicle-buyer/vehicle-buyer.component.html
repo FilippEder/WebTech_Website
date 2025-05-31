@@ -1,0 +1,117 @@
+ <title>Vehicle Browse</title>
+<header><h1>Browse Vehicles</h1></header>
+<main>
+  <form (ngSubmit)="getVehicles()">
+    <select id="category" name="category" (change)="updateMap('vehicle_category_id',$event);onCategoryChange($event)">
+      <option value="1" selected>Cars</option>
+      <option value="2">Motorbikes</option>
+    </select>
+
+    <input id="name" type="text" placeholder="Search term (Name, Description, etc.)" (input)="updateMap('description',$event)">
+
+    <label>Mark:
+    <select id="mark" name="mark" (change)="updateMap('mark_id',$event);onMarkChange($event)">
+      <option value="" selected>Any</option>
+      <option *ngFor="let mark of marks" [value]="mark.mark_id">
+        {{mark.name}}
+      </option>
+    </select>
+    </label>
+
+    <label>Model:
+    <select id="model" name="model" (change)="updateMap('model_id',$event)" [disabled]="models.length===0">
+      <option value="" selected>Any</option>
+      <option *ngFor="let model of models" [value]="model.model_id">
+        {{model.name}}
+      </option>
+    </select>
+    </label>
+
+    <label>Type:
+    <select id="type" name="type" (change)="updateMap('type_id',$event)">
+      <option value="" selected>Any</option>
+      <option *ngFor="let type of types" [value]="type.type_id">
+        {{type.name}}
+      </option>
+    </select>
+    </label>
+
+
+    <label>Max. Price:
+    <select id="price" name="price" (change)="updateMap('price',$event)">
+      <option value="">Any</option>
+      <option value="500">500</option>
+      <option value="1000">1.000</option>
+      <option value="1500">1.500</option>
+      <option value="2000">2.000</option>
+      <option value="2500">2.500</option>
+      <option value="3000">3.000</option>
+      <option value="4000">4.000</option>
+      <option value="5000">5.000</option>
+      <option value="6000">6.000</option>
+      <option value="7000">7.000</option>
+      <option value="8000">8.000</option>
+      <option value="9000">9.000</option>
+      <option value="10000">10.000</option>
+      <option value="12500">12.500</option>
+      <option value="15000">15.000</option>
+      <option value="17500">17.500</option>
+      <option value="20000">20.000</option>
+      <option value="22500">22.500</option>
+      <option value="25000">25.000</option>
+      <option value="27500">27.500</option>
+      <option value="30000">30.000</option>
+      <option value="35000">35.000</option>
+      <option value="40000">40.000</option>
+      <option value="45000">45.000</option>
+      <option value="50000">50.000</option>
+      <option value="75000">75.000</option>
+      <option value="100000">100.000</option>
+    </select>
+    </label>
+
+    <input id="address" type="text" (input)="updateMap('address',$event)" placeholder="Seller's address">
+
+    <label>First registration:
+      <input id="date" type="date" (change)="updateMap('first_registration',$event)">
+    </label>
+
+    <input id="number" type="number" placeholder="Max. Mileage" min="0" (keydown)="preventSigns($event)" (input)="updateMap('mileage',$event)">
+
+    <label>Fuel:
+    <select id="fuel" name="fuel" (change)="updateMap('fuel_type',$event)">
+      <option value="">Any</option>
+      <option value="Diesel">Diesel</option>
+      <option value="92">92</option>
+      <option value="95">95</option>
+      <option value="96">96</option>
+      <option value="Electric">Electric</option>
+    </select>
+    </label>
+
+    <input id="color" name="color" placeholder="Color" (input)="updateMap('color',$event)">
+
+    <label>Condition:
+    <select id="condition" name="condition" (change)="updateMap('condition',$event)">
+      <option value="" selected>Any</option>
+      <option value="New">New</option>
+      <option value="Used">Used</option>
+      <option value="Broken">Broken</option>
+    </select>
+    </label>
+  </form>
+
+  <div class="list">
+    <div class="item-container" *ngFor="let vehicle of vehicles">
+      <app-vehicle-list-element
+        [vehicle]="vehicle"
+        [image]="vehicle.vehicle_pictures[0]">
+      </app-vehicle-list-element>
+      <button [routerLink]="['/vehicle-description',vehicle.vehicle_id]">Description</button>
+    </div>
+  </div>
+
+  <div *ngIf="vehicles.length === 0">
+    <p>Sorry no vehicles</p>
+  </div>
+</main>

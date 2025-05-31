@@ -1,0 +1,69 @@
+<header class="dashboard-header">
+  <div class="container header-container">
+    <div class="logo">Dashboard</div>
+
+    <!-- Menü-Bereich -->
+    <nav class="dashboard-nav">
+      <ul class="menu">
+        <!-- Owner-Bereich (immer sichtbar) -->
+        <li class="owner-section">
+          <span class="section-title">Owner:</span>
+
+          <!-- 1) Add als Dropdown -->
+          <div class="dropdown">
+            <button class="dropbtn">Add</button>
+            <div class="dropdown-content">
+              <!-- Unterpunkte für Add -->
+              <a routerLink="/owner/add">Add Real Estate</a>
+              <a routerLink="/vehicle-seller">Add Vehicle</a>
+              <a routerLink="/retail-add">Add Retail Product</a>
+            </div>
+          </div>
+
+          <!-- 2) Listing -->
+          <a routerLink="/owner/listings">Listing</a>
+
+          <!-- 3) Owner Requests -->
+          <a routerLink="/owner/requests">Owner Requests</a>
+        </li>
+
+        <!-- Buyer-Bereich (immer sichtbar) -->
+        <li class="buyer-section">
+          <span class="section-title">Buyer:</span>
+
+          <!-- 1) Search Browser als Dropdown -->
+          <div class="dropdown">
+            <button class="dropbtn">Search Browser</button>
+            <div class="dropdown-content">
+              <!-- Unterpunkte für Search Browser -->
+              <a routerLink="/tenant/search">Real Estate Browser</a>
+              <a routerLink="/vehicle-buyer">Vehicle Browser</a>
+              <a routerLink="/retail-browser">Retail Browser</a>
+            </div>
+          </div>
+
+          <!-- 2) Buyer Requests -->
+          <a routerLink="/tenant/requests">Buyer Requests</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Logout-Button oben rechts -->
+    <button class="logout-btn" (click)="logout()">Logout</button>
+    <a routerLink="/change-password">Change Password</a>
+    <a routerLink="/change-email">Change Email</a>
+  </div>
+</header>
+
+<main class="dashboard-main">
+  <div class="container">
+    <!-- RouterOutlet für alle Kindrouten -->
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+<footer class="dashboard-footer">
+  <div class="container">
+    <p>&copy; 2025 WebDev. All rights reserved.</p>
+  </div>
+</footer>

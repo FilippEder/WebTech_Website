@@ -1,0 +1,91 @@
+<div class="edit-real-estate">
+  <h2>Immobilie bearbeiten</h2>
+
+  <!-- Kategorie Auswahl -->
+  <label for="category">Kategorie</label>
+  <select [(ngModel)]="realEstateToEdit.category_name" id="category" name="category">
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+  </select>
+
+  <!-- Typ Auswahl -->
+  <label for="type">Typ</label>
+  <select [(ngModel)]="realEstateToEdit.type_name" id="type" name="type">
+    <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+  </select>
+
+  <!-- Immobilienname -->
+  <label for="title">Titel der Immobilie</label>
+  <input [(ngModel)]="realEstateToEdit.property_name" id="title" placeholder="Titel der Immobilie" />
+
+  <!-- Beschreibung -->
+  <label for="description">Beschreibung der Immobilie</label>
+  <textarea [(ngModel)]="realEstateToEdit.description" id="description" placeholder="Beschreibung der Immobilie"></textarea>
+
+  <!-- Adresse -->
+  <label for="address">Adresse</label>
+  <input [(ngModel)]="realEstateToEdit.property_address" id="address" placeholder="Adresse" />
+
+  <!-- Stadt Auswahl -->
+  <label for="city">Stadt</label>
+  <select [(ngModel)]="realEstateToEdit.city_name" id="city" name="city">
+    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+  </select>
+
+  <!-- Provinz Auswahl -->
+  <label for="province">Provinz</label>
+  <select [(ngModel)]="realEstateToEdit.province_name" id="province" name="province">
+    <option *ngFor="let province of provinces" [value]="province">{{ province }}</option>
+  </select>
+
+  <!-- Mietpreis -->
+  <label for="price">Mietpreis</label>
+  <input [(ngModel)]="realEstateToEdit.rental_price" id="price" type="number" placeholder="Preis" />
+
+  <!-- Mietdauer -->
+  <label for="period">Mietdauer (in Monaten)</label>
+  <input [(ngModel)]="realEstateToEdit.rental_period" id="period" type="number" placeholder="Mietdauer" />
+
+  <!-- Vorauszahlung -->
+  <label for="advance-payment">Vorauszahlung</label>
+  <input [(ngModel)]="realEstateToEdit.advance_payment" id="advance-payment" type="number" placeholder="Vorauszahlung" />
+
+  <!-- Verfügbarkeit -->
+  <label for="availability">Verfügbarkeit</label>
+  <select [(ngModel)]="realEstateToEdit.immediate_availability" id="availability" name="availability">
+    <option [value]="true">Verfügbar</option>
+    <option [value]="false">Nicht verfügbar</option>
+  </select>
+
+  <!-- Status -->
+  <label for="status">Status</label>
+  <select [(ngModel)]="realEstateToEdit.status" id="status" name="status">
+    <option value="Open">Offen</option>
+    <option value="Rented">Vermietet</option>
+  </select>
+
+  <!-- Bilder Upload -->
+  <div class="form-group">
+    <label for="images">Bilder hinzufügen</label>
+    <input
+      type="file"
+      id="images"
+      name="images"
+      accept="image/*"
+      (change)="createPictureArray($event)"
+      multiple
+    />
+  </div>
+
+  <!-- Bildvorschau -->
+  <div class="image-preview" *ngIf="realEstateToEdit.pictures && realEstateToEdit.pictures.length">
+    <h3>Bildvorschau</h3>
+    <div class="preview-list">
+      <div class="preview-item" *ngFor="let pic of realEstateToEdit.pictures; let i = index">
+        <!-- Für neu ausgewählte Dateien kannst du URL.createObjectURL verwenden -->
+        <img [src]="getPictureUrl(pic)" alt="Bild {{ i + 1 }}" />
+      </div>
+    </div>
+  </div>
+
+  <button (click)="editRealEstate()">Bearbeiten</button>
+</div>

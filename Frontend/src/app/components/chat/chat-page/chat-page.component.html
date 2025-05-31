@@ -1,0 +1,10 @@
+<!-- app/chat/pages/chat-page/chat-page.component.html -->
+<div class="chat-container">
+  <div class="chat-window-container">
+    <app-chat-window [messages]="messages"></app-chat-window>
+  </div>
+  <div class="chat-input-container">
+    <app-chat-input (messageSent)="sendMessage($event)"></app-chat-input>
+  </div>
+</div>
+

@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+/* Basis-Stile */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Ein Container-Beispiel */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Media Query für Tablets und kleine Bildschirme */
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  .container {
+    padding: 0 0.5rem;
+  }
+}
+
+/* Media Query für sehr kleine Geräte (Smartphones) */
+@media only screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  .container {
+    padding: 0 0.5rem;
+  }
+}
+

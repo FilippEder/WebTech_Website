@@ -1,0 +1,5 @@
+<!-- src/app/chat/components/chat-window/chat-window.component.html -->
+<div #chatContainer class="chat-window" style="overflow-y: auto; height: 400px;">
+  <app-chat-message *ngFor="let msg of messages" [message]="msg"></app-chat-message>
+</div>
+

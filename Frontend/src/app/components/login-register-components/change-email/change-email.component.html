@@ -1,0 +1,23 @@
+<title>Change Email</title>
+<main>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Change Email</h1>
+
+    <input type="password" formControlName="password" id="password" placeholder="Password">
+    <div *ngIf="formControl.password.invalid && formControl.password.touched">
+      <div *ngIf="formControl.password.errors?.required">password is required</div>
+    </div>
+
+    <input formControlName="email" id="email" placeholder="New Email">
+    <div *ngIf="formControl.email.invalid && formControl.email.touched">
+      <div *ngIf="formControl.email.errors?.required">Email is required</div>
+      <div *ngIf="formControl.email.errors?.email">Email is invalid</div>
+    </div>
+
+
+    <div *ngIf="usedEmail">This Email is already in use</div>
+    <div *ngIf="changeSuccessful">Email changed!</div>
+    <div *ngIf="incorrectPassword">Password is incorrect</div>
+    <button type="submit">Send</button>
+  </form>
+</main>
