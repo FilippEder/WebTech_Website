@@ -1,6 +1,5 @@
 const {DataTypes} = require('sequelize')
 const sequelize = require('../../config/database/sequelize')
-const User = require('../login/user')
 
 const Vehicle= sequelize.define('vehicles',{
     vehicle_id:{
@@ -53,7 +52,5 @@ const Vehicle= sequelize.define('vehicles',{
 },{
     timestamps:true
 })
-
-Vehicle.belongsTo(User, {foreignKey: "user_id"})
 
 module.exports = Vehicle

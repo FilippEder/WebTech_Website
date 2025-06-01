@@ -1,4 +1,4 @@
-const Picture = require('../models/vehicle/vehicle-picture')
+const {VehiclePicture} = require('../models/vehicle/model-index')
 const {existsSync, unlinkSync} = require("node:fs");
 
 
@@ -10,7 +10,7 @@ async function storeVehiclePictureUrl(vehicle_id, files){
             picture_url: image.path
         }))
 
-        await Picture.bulkCreate(images);
+        await VehiclePicture.bulkCreate(images);
     } catch (error){
         console.error('Error saving images', error)
     }

@@ -1,7 +1,7 @@
 const express = require('express');
 const router =express.Router();
 
-const Type = require('../../models/vehicle/vehicle-type')
+const {VehicleType} = require('../../models/vehicle/model-index')
 const checkAuth = require('../login/middleware/checkAuthentication')
 
 router.use(checkAuth)
@@ -11,7 +11,7 @@ router.get('/single/:id', async(req,res)=>{
     const {id} = req.params
 
     try{
-        const type = await Type.findOne({
+        const type = await VehicleType.findOne({
             where:{type_id:id}
         });
 
@@ -29,7 +29,7 @@ router.get('/:id',async (req,res)=>{
     const {id} = req.params
 
     try{
-        const types = await Type.findAll({
+        const types = await VehicleType.findAll({
             where: {vehicle_category_id:id}
         });
 

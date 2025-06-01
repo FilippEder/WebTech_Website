@@ -34,6 +34,9 @@ const deleteConversationsRoutes = require('./src/routes/chat/conversations/delet
 const immobilienRoutes = require('./src/routes/realEstate/immobilien.routes');
 const requestRoutes = require('./src/routes/realEstate/request.routes');
 
+const vehicleMarkPresets = require('./src/models/seeders/vehicleData/vehicle-mark-data')
+const {VehicleMark }= require('./src/models/vehicle/model-index')
+
 //Cors
 const cors = require('cors');
 const http = require("http");
@@ -118,6 +121,16 @@ app.use('/api/category', categoryRouter);
 
     await sequelize.sync({force:false});
     console.log('All models are synchronized');
+
+    for(const mark of vehicleMarkPresets){
+      await VehicleMark.findOrCreate(
+          {
+            where: {
+              mark_id: mark.mark_id,
+              vehicle_category_id: mark.vehicle_category_id,
+              name: mark.name
+            }})
+    }
 
     const PORT = process.env.PORT || 3000;
     server.listen(PORT, ()=>{

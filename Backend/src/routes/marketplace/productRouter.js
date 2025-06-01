@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const { Product, ProductPicture, ProductAttribute, Attribute } = require("../../models/marketplace");
+const { Product, ProductPicture, ProductAttribute, Attribute } = require("../../models/marketplace/model-index");
 const checkAuth = require('../login/middleware/checkAuthentication');
 
 router.use(checkAuth);

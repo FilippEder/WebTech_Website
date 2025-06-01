@@ -1,5 +1,5 @@
 /**
- * @file index.js
+ * @file model-index.js
  * @brief Loads all Retail marketplace real-estate-section-models and defines their associations.
  */
 

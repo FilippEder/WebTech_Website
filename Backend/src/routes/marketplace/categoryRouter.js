@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const RetailCategory = require('../../models/marketplace/RetailCategory');
-const { CategoryAttribute,Attribute } = require('../../models/marketplace');
+const { CategoryAttribute,Attribute } = require('../../models/marketplace/model-index');
 
 
 // Alle Oberkategorien (parentId == null)

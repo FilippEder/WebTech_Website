@@ -1,8 +1,7 @@
 const express = require('express');
 const router =express.Router();
 
-const Vehicle = require('../../models/vehicle/vehicle')
-const Picture = require('../../models/vehicle/vehicle-picture')
+const {Vehicle, VehiclePicture} = require('../../models/vehicle/model-index')
 const User = require('../../models/login/user')
 const {Sequelize, Op} = require("sequelize");
 
@@ -70,7 +69,7 @@ router.get('/',async (req,res)=>{
         const vehicles = await Vehicle.findAll({
             where:filters,
             include:[
-                {model: Picture},
+                {model: VehiclePicture},
                 {
                     model: User,
                     where: userFilters,
@@ -94,7 +93,7 @@ router.get('/user',async (req,res)=>{
     try{
         const vehicles = await Vehicle.findAll({
             where: {user_id: id},
-            include: {model: Picture }
+            include: {model: VehiclePicture }
         })
 
         if(!vehicles){
@@ -120,7 +119,7 @@ router.get('/:id',async (req,res)=>{
         const vehicle = await Vehicle.findOne({
             where: {vehicle_id: id},
             include: [
-                {model: Picture },
+                {model: VehiclePicture },
                 {model: User,
                 attributes: ['email','address']}
             ]
@@ -182,7 +181,7 @@ router.delete('/:id', async (req, res)=>{
     const { id } = req.params
 
     try{
-        const pictures = await Picture.findAll({
+        const pictures = await VehiclePicture.findAll({
             where: {vehicle_id:id}
         })
 
@@ -239,7 +238,7 @@ router.delete('/picture/:id', async(req,res)=>{
     const { id } = req.params
 
     try{
-        const picture = await Picture.findOne({
+        const picture = await VehiclePicture.findOne({
             where: {picture_id:id}
         })
 
@@ -249,7 +248,7 @@ router.delete('/picture/:id', async(req,res)=>{
 
         await pictureMiddleware.deleteVehiclePictureFromDisk(picture.picture_url)
 
-        const deletedPicture = await Picture.destroy({
+        const deletedPicture = await VehiclePicture.destroy({
             where: { picture_id:id }
         });
 
