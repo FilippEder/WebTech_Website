@@ -1,4 +1,4 @@
-const pool = require('../../config/database/db'); // Pfad ggf. anpassen
+const pool = require('../../config/database/sequelize'); // Pfad ggf. anpassen
 
 class MessageModel {
   /**

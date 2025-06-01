@@ -3,7 +3,7 @@
  *
  * Modell für "requests".
  */
-const db = require('../../config/database/db');
+const db = require('../../config/database/sequelize');
 
 class Request {
     constructor(data) {

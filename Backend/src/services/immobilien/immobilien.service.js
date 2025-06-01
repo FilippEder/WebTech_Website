@@ -3,7 +3,7 @@
  *
  * Service für Immobilien-bezogene Operationen.
  */
-const db = require('../../config/database/db');
+const db = require('../../config/database/sequelize');
 const RealEstate = require('../../models/realEstate/real_estate.model');
 
 class ImmobilienService {

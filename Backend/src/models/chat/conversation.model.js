@@ -1,5 +1,5 @@
 
-const pool = require('../../config/database/db');
+const pool = require('../../config/database/sequelize');
 
 
 class ConversationModel {

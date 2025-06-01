@@ -1,6 +1,6 @@
 // real-estate-section-models/listing.model.js
 
-const db = require('../../config/database/db'); // Datenbankverbindung
+const db = require('../../config/database/sequelize'); // Datenbankverbindung
 
 class Listing {
   constructor(data) {

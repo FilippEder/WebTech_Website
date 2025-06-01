@@ -94,12 +94,6 @@ if (chatSocket.io) {
     next();
   });
 
-// Globaler Fehler-Handler
-  app.use((err, req, res) => {
-    console.error('Globaler Fehler:', err);
-    res.status(500).json({ error: err.message || 'Internal Server Error' });
-  });
-
 
 for(const [path, router] of Object.entries({
   '/vehicle': vehicleManagementRoutes.vehicleRouter,
@@ -121,6 +115,14 @@ app.use('/api/category', categoryRouter);
   try{
     await sequelize.authenticate();
     console.log('Sequelize connection has been established successfully');
+
+    await sequelize.sync({force:false});
+    console.log('All models are synchronized');
+
+    const PORT = process.env.PORT || 3000;
+    server.listen(PORT, ()=>{
+      console.log(`Server listening on port ${PORT}`)
+    })
   } catch (error){
     console.error('Sequelize is unable to connect to the database:', error)
   }

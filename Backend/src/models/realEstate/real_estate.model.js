@@ -3,7 +3,7 @@
  *
  * Modell für "real_estate".
  */
-const db = require('../../config/database/db');
+const db = require('../../config/database/sequelize');
 
 class RealEstate {
     constructor(data) {
