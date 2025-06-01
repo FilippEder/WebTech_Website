@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:backend": "npm --prefix ./Backend start",
+    "start:frontend": "npm --prefix ./Frontend start",
+    "start:all": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  }
 }

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./app.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -22,6 +22,7 @@
     "sequelize": "^6.37.7",
     "sinon": "^20.0.0",
     "socket.io": "^4.8.1",
+    "sqlite3": "^5.1.7",
     "supertest": "^7.1.1"
   }
 }
