@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const { Product, ProductPicture, ProductAttribute, Attribute } = require("../../models/marketplace/model-index");
+const { Product, ProductPicture, ProductAttribute, Attribute } = require("../../models/marketplace");
 const checkAuth = require('../login/middleware/checkAuthentication');
 
 router.use(checkAuth);
 
 // ----- Multer-Konfiguration für den Bildupload -----
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, '/home/matthiase/WebTechProject/Backend/Backend/uploads/products'),
+  destination: (req, file, cb) => cb(null, 'uploads/products/'),
   filename: (req, file, cb) => cb(null, `${Date.now()}_${file.originalname}`)
 });
 const upload = multer({

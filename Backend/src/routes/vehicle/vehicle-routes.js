@@ -1,13 +1,12 @@
 const express = require('express');
 const router =express.Router();
 
-const {Vehicle, VehiclePicture} = require('../../models/vehicle/model-index')
+const {Vehicle, VehiclePicture} = require('../../models/vehicle')
 const User = require('../../models/login/user')
 const {Sequelize, Op} = require("sequelize");
 
-const storage = require('../../config/multer-config')
-const multer = require('multer')
-const upload = multer({storage: storage})
+const upload = require('../../config/multer-config')
+
 const checkAuth = require('../login/middleware/checkAuthentication')
 const checkMaxListings = require('../login/middleware/checkMaxUserListings')
 
