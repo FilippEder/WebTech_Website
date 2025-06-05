@@ -53,13 +53,6 @@ body {
   gap: 20px; /* Abstand zwischen den Einträgen (Add, Listing, Requests) */
 }
 
-.section-title {
-  font-weight: 700;
-  font-size: 1.1em;
-  margin-right: 8px;
-  color: #007BFF;
-}
-
 .dashboard-nav a {
   text-decoration: none;
   color: #333;
@@ -119,6 +112,22 @@ body {
 /* Dropdown anzeigen beim Hover */
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.button{
+  background: #007BFF;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.button:hover{
+  background: #0056b3;
 }
 
 /* Logout-Button */

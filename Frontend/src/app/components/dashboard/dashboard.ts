@@ -17,7 +17,11 @@ export class Dashboard {
               protected readonly authService: UserService) {
   }
 
-  logout(){
+  isloggedIn(){
+    return this.authService.isAuthenticated()
+  }
+
+    logout(){
     this.authService.logoutUser();
     this.router.navigate(['/login'])
   }

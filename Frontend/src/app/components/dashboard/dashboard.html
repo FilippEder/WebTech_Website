@@ -8,7 +8,6 @@
       <ul class="menu">
         <!-- Owner-Bereich (immer sichtbar) -->
         <li class="owner-section">
-          <span class="section-title">Owner:</span>
 
           <!-- 1) Add als Dropdown -->
           <div class="dropdown">
@@ -30,7 +29,6 @@
 
         <!-- Buyer-Bereich (immer sichtbar) -->
         <li class="buyer-section">
-          <span class="section-title">Buyer:</span>
 
           <!-- 1) Search Browser als Dropdown -->
           <div class="dropdown">
@@ -50,9 +48,11 @@
     </nav>
 
     <!-- Logout-Button oben rechts -->
-    <button class="logout-btn" (click)="logout()">Logout</button>
-    <a routerLink="/change-password">Change Password</a>
-    <a routerLink="/change-email">Change Email</a>
+    @if(isloggedIn()){
+      <button class="logout-btn" (click)="logout()">Logout</button>
+      <a routerLink="/change-password"><button class="button">Change Password</button></a>
+      <a routerLink="/change-email"><button class="button">Change Email</button></a>
+    }
   </div>
 </header>
 
