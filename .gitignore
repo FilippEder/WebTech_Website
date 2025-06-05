@@ -1,8 +1,19 @@
+#Node.js
 Backend/node_modules
-
-.idea
 node_modules
+
+#IntellijIdea IDE
+.idea
 WebTech_Website.iml
 Frontend/Frontend.iml
 Backend/Backend.iml
+
+#Sqlite Database
 Backend/database.sqlite
+
+#Backend file storage directories
+Backend/uploads/cars/*
+!Backend/uploads/cars/placeholder.png
+
+Backend/uploads/products/*
+!Backend/uploads/products/placeholder.png
