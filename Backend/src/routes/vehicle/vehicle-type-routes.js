@@ -1,7 +1,7 @@
 const express = require('express');
 const router =express.Router();
 
-const {VehicleType} = require('../../models/vehicle/model-index')
+const {VehicleType} = require('../../models/vehicle')
 const checkAuth = require('../login/middleware/checkAuthentication')
 
 router.use(checkAuth)

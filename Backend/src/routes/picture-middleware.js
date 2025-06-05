@@ -1,4 +1,4 @@
-const {VehiclePicture} = require('../models/vehicle/model-index')
+const {VehiclePicture} = require('../models/vehicle')
 const {existsSync, unlinkSync} = require("node:fs");
 
 
