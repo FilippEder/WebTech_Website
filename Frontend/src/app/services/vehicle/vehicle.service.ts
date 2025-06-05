@@ -19,12 +19,6 @@ export class VehicleService {
     return this.http.post<FormData>(this.apiURL, formData);
   }
 
-  getVehicle():Observable<Vehicle[]>{
-    return this.http.get<any[]>(this.apiURL).pipe(
-      map((response:any[])=> this.mapToVehicles(response))
-    )
-  }
-
   getVehicleByQuery(attributes:Map<string,string>):Observable<Vehicle[]>{
     let queryUrl = 'http://localhost:3000/vehicle?'
     let count = 0

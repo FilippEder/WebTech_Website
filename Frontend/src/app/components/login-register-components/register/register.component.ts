@@ -17,10 +17,6 @@ import {passwordValidator} from '../../../services/validators/password-validator
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-
-  StrongPasswordRegx: RegExp =
-    /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
-
   form:any;
   formControl:any;
   usedEmail:boolean = false;
@@ -54,7 +50,7 @@ export class RegisterComponent {
     if(this.form.valid){
       let values = this.form.value
       let address = this.addressToString();
-      let newUser = new User(0,values.email,values.password,address)
+      let newUser = new User(values.email,values.password,address)
 
       this.userService.registerUser(newUser).subscribe({
         next: (response) =>{

@@ -5,9 +5,6 @@ import {Router} from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -26,14 +23,6 @@ export class UserService {
 
   saveToken(token: string): void {
     localStorage.setItem('token', token);
-    // Dekodiere den Token, um User-Daten (wie user_id) zu extrahieren
-    try {
-      const decoded: any = jwtDecode(token);
-      // Speichere die dekodierten Daten als "currentUser" (sofern der Token das Feld "user_id" enthält)
-      localStorage.setItem('currentUser', JSON.stringify(decoded));
-    } catch (error) {
-      console.error('Fehler beim Dekodieren des Tokens:', error);
-    }
   }
 
   getToken(): string | null {
